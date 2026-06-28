@@ -1,0 +1,88 @@
+<%- include("./partials/header.ejs")%>
+<body>
+    <nav class="navbar navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+            <i class="bi bi-person-lines-fill"></i>
+            </a>
+        </div>
+    </nav>
+    <div class="container mt-5">
+        <h2>
+        Registrar llamada para
+        <strong>
+        <%= contacto.nombre %> <%= contacto.apellido %>
+        </strong>
+        </h2>
+        <form
+            action="/guardarLlamada/<%= contacto._id %>"
+            method="POST">
+
+            <div class="mb-3">
+                <label>Fecha</label>
+                <input
+                type="date"
+                name="fecha"
+                class="form-control"
+                required>
+            </div>
+
+            <div class="mb-3">
+                <label>Motivo</label>
+                <input
+                type="text"
+                name="motivo"
+                class="form-control"
+                required>
+            </div>
+
+            <div class="mb-3">
+                <label>Quién realizó la llamada</label>
+                <select name="quien" class="form-select" required>
+                    <option value="">Seleccione...</option>
+                    <option>Alfredo</option>
+                    <option>María</option>
+                    <option>Pedro</option>
+                </select>
+
+            </div>
+
+            <button class="btn btn-primary">
+            Guardar llamada
+            </button>
+            <a href="/" class="btn btn-secondary">
+            Volver
+            </a>            
+        </form>
+
+        <hr>
+        <h3>Historial de llamadas</h3>
+        <table class="table table-striped">
+        <thead>
+        <tr>
+        <th>Fecha</th>
+        <th>Motivo</th>
+        <th>Quién</th>
+        </tr>
+        </thead>
+        <tbody>
+            <% contacto.llamadas.forEach(llamada => { %>
+        <tr>
+        <td>
+            <%= new Date(llamada.fecha).toLocaleDateString("es-DO") %>
+        </td>
+        <td>
+            <%= llamada.motivo %>
+        </td>
+        <td>
+            <%= llamada.quien %>
+        </td>
+        </tr>
+            <% }) %>
+        </tbody>
+        </table>
+
+    </div>
+    <%- include("./partials/footer.ejs")%>
+</body>
+</html>

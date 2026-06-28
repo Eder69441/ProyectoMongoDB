@@ -1,0 +1,86 @@
+<%- include("./partials/header.ejs")%>
+<body>
+    <nav class="navbar navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+            <i class="bi bi-person-lines-fill"></i>
+            Agenda Telefónica con MongoDB
+            </a>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="card shadow">
+
+    <div class="card-header bg-primary text-white">
+    <h3>
+    <i class="bi bi-people-fill"></i>
+    Lista de Contactos
+    </h3>
+    </div>
+
+    <div class="container mt-5">
+    <a href="/agregar" class="btn btn-primary mb-3">
+        Nuevo Contacto
+    </a>   
+</div>
+
+    <div class="card-body">
+        <table class="table table-bordered table-hover">
+            <thead class="table-dark">
+            <tr>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Correo</th>
+            <th>Cédula</th>
+            <th>Llamadas</th>
+            <th>Acciones</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% contactos.forEach(contacto => { %>
+            <tr>
+            <td><%= contacto.nombre %></td>
+            <td><%= contacto.apellido %></td>
+            <td><%= contacto.correo %></td>
+            <td><%= contacto.cedula %></td>
+            <td><%= contacto.llamadas.length %></td>
+
+            <td>
+                <!-- Boton editar -->
+                <a href="/editar/<%= contacto._id %>" class="btn btn-warning btn-sm">
+                    <i class="bi bi-pencil-square"></i>
+                </a>
+
+                <!-- Boton registro de llamadas -->
+                <a href="/llamadas/<%= contacto._id %>" class="btn btn-success btn-sm">
+                    <i class="bi bi-telephone-outbound-fill"></i>
+                </a>
+
+                <!-- Boton eliminar -->
+                <a href="/eliminar/<%= contacto._id %>" class="btn btn-danger btn-sm"
+                    onclick="return confirm('¿Desea eliminar este contacto?')">
+                    <i class="bi bi-trash3-fill"></i>
+                </a>
+
+                <!-- Boton de imprimir -->
+                <a
+                href="/reporte/<%= contacto._id %>"
+                class="btn btn-primary btn-sm"
+                target="_blank">
+                <i class="bi bi-printer-fill"></i>                
+                </a>
+            </td>
+            </tr>
+            <% }) %>
+            </tbody>
+        </table>
+
+        </div>
+
+        </div>
+
+    </div>
+    <%- include("partials/footer") %>
+</body>
+</html>

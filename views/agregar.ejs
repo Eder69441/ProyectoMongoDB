@@ -1,0 +1,89 @@
+<%- include("./partials/header.ejs")%>
+
+<body>
+    <nav class="navbar navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+            <i class="bi bi-person-lines-fill"></i>
+            </a>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <h2>Nuevo Contacto</h2>
+        <form action="/guardar" method="POST">
+        <div class="mb-3">
+            <label>Nombre</label>
+            <input
+            type="text"
+            name="nombre"
+            class="form-control"
+            required>
+        </div>
+
+        <div class="mb-3">
+            <label>Apellido</label>
+            <input
+            type="text"
+            name="apellido"
+            class="form-control"
+            required>
+        </div>
+
+        <div class="mb-3">
+            <label>Correo</label>
+            <input
+            type="email"
+            name="correo"
+            class="form-control"
+            required>
+        </div>
+
+        <div class="mb-3">
+            <label>Tipo de Sangre</label>
+            <select
+            name="tipoSangre"
+            class="form-control">
+            <option>O+</option>
+            <option>O-</option>
+            <option>A+</option>
+            <option>A-</option>
+            <option>B+</option>
+            <option>B-</option>
+            <option>AB+</option>
+            <option>AB-</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label>Cédula</label>
+            <input
+            type="text"
+            name="cedula"
+            class="form-control"
+            required>
+        </div>
+
+        <div class="mb-3">
+        <label>Fecha de nacimiento</label>
+        <input
+        type="date"
+        name="fechaNacimiento"
+        class="form-control"
+        required>
+        </div>
+        <button
+        class="btn btn-primary">
+        Guardar Contacto
+        </button>
+        <a
+        href="/"
+        class="btn btn-secondary">
+        Cancelar
+        </a>
+        </form>
+        </div>
+
+        <%- include("./partials/footer.ejs")%>
+</body>
+</html>
